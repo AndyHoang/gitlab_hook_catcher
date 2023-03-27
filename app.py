@@ -16,7 +16,7 @@ SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 @app.post("/gitlab-webhook")
 async def handler(request: Request, response: Response):
   data = await request.json()
-  webhook_payload = IssueEventPayload.parse_raw(data)
+  webhook_payload = IssueEventPayload.parse_obj(data)
   message = webhook_payload.json()
   response = await send_to_slack(message)
   if response.status_code == 200:

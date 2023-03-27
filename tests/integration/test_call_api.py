@@ -14,8 +14,5 @@ def test_call_api():
     with open(json_file_path, "r") as file:
         data = json.load(file)
     response = requests.post(url, headers=headers, json=data)
-    if response.status_code == 200:
-        print("Request sent successfully")
-    else:
-        print("Request failed with error code:", response.status_code)
+    assert response.status_code == 200
 
